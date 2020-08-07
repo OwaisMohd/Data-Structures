@@ -1,0 +1,37 @@
+public class solution {
+	public static void printSubsetsSumTok(int input[], int k) {
+		// Write your code here
+		printSubsetsSumTok(input,k,0,new int[0]);
+	}
+    private static void printSubsetsSumTok(int input[], int p, int start, int output[]) {
+		if(start == input.length)
+        {
+            if(p == 0)
+            {
+                for(int i=0;i<output.length;i++)
+                {
+                    System.out.print(output[i]+" ");
+                }
+                System.out.println();
+                return;
+            }
+            else{
+                return;
+            }
+        }
+        int i;
+        int cn=input[start];
+        int newoutput[]=new int[output.length+1];
+        for(i=0;i<output.length;i++)
+        {
+            newoutput[i]=output[i];
+        }
+        newoutput[i]=cn;
+        
+        printSubsetsSumTok(input,p,start+1,output);
+        printSubsetsSumTok(input,p-cn,start+1,newoutput);
+        
+        
+	}
+    
+}
