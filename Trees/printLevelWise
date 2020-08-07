@@ -1,0 +1,149 @@
+public class Solution {
+
+    /* TreeNode structure
+ *
+ * class TreeNode<T> {
+T data;
+ArrayList<TreeNode<T>> children;
+
+TreeNode(T data){
+this.data = data;
+children = new ArrayList<TreeNode<T>>();
+}
+}*/
+    static class Node<T> {
+        T data;
+        Node<T> next;
+
+        public Node(T data) {
+            this.data = data;
+        }
+    }
+
+    static class QueueEmptyException extends Exception
+    {
+
+
+    }
+
+    static class Queue<T> {
+
+        private int size;
+        private Node<T> front;
+        private Node<T> rear;
+
+
+        public Queue() {
+            front=null;
+            size=0;
+            rear=null;
+
+        }
+
+        public void enqueue(T data) {
+
+            Node<T> newnode = new Node<T>(data);
+            size++;
+            if(front==null)
+            {
+
+                front=newnode;
+                rear=newnode;
+            }
+            else
+            {
+
+                rear.next=newnode;
+                rear=rear.next;
+
+            }
+
+
+
+
+        }
+
+        public int size() {
+
+            return size;
+        }
+
+        public boolean isEmpty() {
+            return (size==0);
+
+        }
+
+        public T dequeue() throws QueueEmptyException {
+
+            if(size==0)
+                throw new QueueEmptyException();
+
+            T temp=front.data;
+            front=front.next;
+            size--;
+
+            return temp;
+        }
+
+        public T front() throws QueueEmptyException {
+
+            if(size==0)
+                throw new QueueEmptyException();
+
+            return front.data;
+
+        }
+    }
+
+
+    public static void printLevelWise(TreeNode<Integer> root){
+        /* Your class should be named Solution
+  * Don't write main().
+* Don't read input, it is passed as function argument.
+* Print output and don't return it.
+* Taking input is handled automatically.
+*/
+        Queue<TreeNode<Integer>> pendingnodes =new Queue<>();
+
+        pendingnodes.enqueue(root);
+        //System.out.println(root.data);
+        pendingnodes.enqueue(null);
+
+        while(pendingnodes.size() != 1)
+        {
+            try {
+                TreeNode<Integer> newnode=pendingnodes.dequeue();
+
+                if(newnode == null){
+                    System.out.println();
+                    pendingnodes.enqueue(null);
+                    continue;
+                }
+                if(newnode == root){
+                    System.out.print(newnode.data);
+                }else{
+                    System.out.print(newnode.data+" ");
+                }
+                //System.out.print(newnode.data+" ");
+                //String s="";
+
+                for(int i=0;i<newnode.children.size();i++)
+                {
+                    pendingnodes.enqueue(newnode.children.get(i));
+                    //System.out.println();
+                    // System.out.print(newnode.children.get(i).data+" ");
+                    //s=s+newnode.children.get(i).data+" ";
+
+                }
+
+                //System.out.println(s);
+
+            } catch (QueueEmptyException e) {
+                // TODO Auto-generated catch bloc
+                return;
+            }
+        }     
+
+    }
+
+}
