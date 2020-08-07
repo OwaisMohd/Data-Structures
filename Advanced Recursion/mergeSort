@@ -1,0 +1,65 @@
+public class solution {
+
+	public static void mergeSort(int[] input){
+		// Write your code here
+        mergeSort(input,0,input.length-1);
+	}
+    
+    private static void mergeSort(int input[],int s,int e)
+    {
+        if(s>=e)
+        {
+            return ;
+        }
+        int mid=(s+e)/2;
+        mergeSort(input,s,mid);
+        mergeSort(input,mid+1,e);
+        merge(input,s,mid,e);
+    }
+    
+    private static void merge(int input[],int s,int mid,int e)
+    {
+        
+        int n1=mid-s+1;
+        int n2=e-mid;
+        int l[]=new int[n1];
+        int r[]=new int[n2];
+        
+        for(int i=0;i<n1;i++)
+        {
+            l[i]=input[i+s];
+        }
+        for(int j=0;j<n2;j++)
+        {
+            r[j]=input[j+mid+1];
+        }
+        int i=0;int j=0;
+        int k=s;
+        
+        while(i<n1 && j<n2)
+        {
+            if(l[i] <= r[j])
+            {
+                input[k]=l[i];
+                i++;k++;
+            }
+            else
+            {
+                input[k]=r[j];
+                j++;k++;
+            }
+        }
+        
+        while(i<n1)
+        {
+            input[k]=l[i];
+            i++;k++;
+        }
+        
+        while(j<n2)
+        {
+            input[k]=r[j];
+            j++;k++;
+        }
+    }
+}
