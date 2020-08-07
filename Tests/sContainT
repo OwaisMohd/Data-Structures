@@ -1,0 +1,29 @@
+public class Solution {
+	public static boolean checkSequence(String a, String b) {
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+		 * Taking input and printing output is handled automatically.
+		 */
+        int l1=a.length();
+        int l2=b.length();
+		return checkSequence(a, b, l1, l2);
+	}
+    
+    private static boolean checkSequence(String a, String b,int x,int y)
+    {
+        if(y == 0)
+        {
+            return true;
+        }
+        if(x == 0)
+        {
+            return false;
+        }
+        if (a.charAt(x-1) == b.charAt(y-1)) 
+            return checkSequence(a, b, x-1, y-1); 
+        
+        return checkSequence(a,b,x-1,y);
+    }
+}
