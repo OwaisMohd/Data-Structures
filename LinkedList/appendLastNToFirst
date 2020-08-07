@@ -1,0 +1,47 @@
+/*
+class LinkedListNode<T> {
+	public T data;
+	public LinkedListNode<T> next;
+
+	public LinkedListNode(T data) {
+		this.setData(data);
+		this.next = null;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+}
+* */
+public class Solution {
+	public static LinkedListNode<Integer> append(LinkedListNode<Integer> root, int n) {
+        LinkedListNode<Integer> curr=root;
+        int len=0;
+        while(curr != null)
+        {
+            len++;
+            curr=curr.next;
+        }
+        int i=0;int count=len-n;curr=root;
+        
+        while(i != count-1)
+        {
+            i++;
+            curr=curr.next;
+        }
+        LinkedListNode<Integer> newroot=curr.next;
+        curr.next=null;
+        curr=newroot;
+        while(curr.next != null)
+        {
+            curr=curr.next;
+        }
+        curr.next=root;
+        return newroot;
+    }
+}
