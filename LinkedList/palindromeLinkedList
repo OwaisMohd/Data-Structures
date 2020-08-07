@@ -1,0 +1,76 @@
+/*
+class LinkedListNode<T> {
+	public T data;
+	public LinkedListNode<T> next;
+
+	public LinkedListNode(T data) {
+		this.setData(data);
+		this.next = null;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+}
+* */
+public class Solution {
+	public static boolean isPalindrome_2(LinkedListNode<Integer> head) {
+        
+        int len=0;
+        LinkedListNode<Integer> ptr1=head;
+        while(ptr1 != null)
+        {
+            ptr1=ptr1.next;
+            len++;
+        }
+        
+        if(len == 2)
+        {
+         	if(head.data.equals(head.next.data))
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        
+        len/=2;int i=0;
+        ptr1=head;
+        while(i <= len )
+        {
+            i++;
+            ptr1=ptr1.next;
+        }
+        //ptr1 is at mid position of linked list
+        LinkedListNode<Integer> prev=null;
+    	while(ptr1 != null)
+        {
+            LinkedListNode<Integer> nextnode=ptr1.next;
+            ptr1.next=prev;
+            prev=ptr1;
+            ptr1=nextnode;
+        }
+        
+        LinkedListNode<Integer> temp=head;
+        while(prev != null)
+        {
+            if(prev.data != temp.data)
+            {
+                return false;
+            }
+            prev=prev.next;
+            temp=temp.next;
+        }
+        
+        return true;
+        
+        
+        
+    }
+}
