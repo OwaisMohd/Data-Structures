@@ -1,0 +1,72 @@
+/*
+class LinkedListNode<T> {
+	public T data;
+	public LinkedListNode<T> next;
+
+	public LinkedListNode(T data) {
+		this.setData(data);
+		this.next = null;
+	}
+
+
+
+}
+* */
+public class Solution {
+	public static LinkedListNode<Integer> sortEvenOdd(LinkedListNode<Integer> head) {
+        
+        if(head == null || head.next == null)
+        {
+            return head;
+        }
+        
+        LinkedListNode<Integer> temp=head;
+        LinkedListNode<Integer> eh,et,oh,ot;
+        eh=null;et=null;oh=null;ot=null;
+        while(temp != null)
+        {
+            if(temp.data%2 == 0)
+            {
+                if(eh == null)
+                {
+                    eh = temp;
+                    et = temp;
+                }
+                else
+                {
+                    et.next = temp;
+                    et = temp;
+                }
+            }
+            else
+            {
+                if(oh == null)
+                {
+                    oh = temp;
+                    ot = temp;
+                }
+                else
+                {
+                    ot.next = temp;
+                    ot = temp;
+                }
+            }
+            temp = temp.next;
+        }
+        if(oh == null)
+        {
+            et.next=null;
+            return eh;
+        }
+        if(eh == null)
+        {
+            ot.next = null;
+            return oh;
+        }
+        et.next = null;
+        ot.next = null;
+        
+        ot.next = eh;
+        return oh;
+	}
+}
