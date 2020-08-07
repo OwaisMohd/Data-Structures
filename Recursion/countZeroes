@@ -1,0 +1,19 @@
+public class solution {
+
+	public static int countZerosRec(int input){
+		// Write your code here
+        return countZeroesRec(input,0);
+	}
+    private static int countZeroesRec(int input,int c)
+    {
+        if(input == 0)
+        {
+            return c;
+        }
+        if(input%10 == 0)
+        {
+            c+=1;
+        }
+		return countZeroesRec(input/10,c);
+    }
+}
