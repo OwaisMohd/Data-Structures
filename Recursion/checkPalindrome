@@ -1,0 +1,33 @@
+public class solution {
+
+	public static boolean isStringPalindrome(String input) {
+		// Write your code here
+        return isStringPalindrome(input,0,input.length()-1);
+	}
+    private static boolean isStringPalindrome(String input,int startIndex,int endIndex)
+    {
+        if(input.length() == 0)
+        {
+            return false;
+        }
+        if(input.length() == 1)
+        {
+            return true;
+        }
+        if(startIndex < endIndex)
+        {
+            if(input.charAt(startIndex) == input.charAt(endIndex))
+        	{
+           		return isStringPalindrome(input,startIndex+1,endIndex-1);
+        	}
+        	else
+        	{
+            	return false;
+        	}
+        }
+        else
+        {
+            return true;
+        }
+    }
+}
