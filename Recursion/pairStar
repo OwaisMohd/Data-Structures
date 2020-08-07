@@ -1,0 +1,23 @@
+public class solution {
+
+	// Return the updated string
+	public static String addStars(String s) {
+		// Write your code here
+		return addStars(s,0);
+	}
+    private static String addStars(String input, int startIndex)
+    {
+        if(startIndex > input.length()-2)
+        {
+            return input;
+        }
+        if(input.charAt(startIndex) == input.charAt(startIndex+1))
+        {
+            String input1 = input.substring(0,startIndex+1) + "*" + input.substring(startIndex+1);
+            input=input1;
+            startIndex+=2;
+            return addStars(input,startIndex);
+        }
+        return addStars(input,startIndex+1);
+    }
+}
