@@ -1,0 +1,74 @@
+public class solution {
+
+	// Return a 2D array that contains all the subsets
+	public static int[][] subsets(int input[]) {
+		// Write your code here
+        return subsets(input,0);
+	}
+    
+    private static int[][] subsets(int input[],int start)
+    {
+        if(start == input.length)
+        {
+    		int myAns[][]=new int[1][0];
+            return myAns;
+        }
+        
+        int cn=input[start];
+        
+        int smallAns[][]=subsets(input,start+1);
+        int myAns[][]=new int [2*smallAns.length][];
+        
+        int k=0;
+        for(int i=0;i<smallAns.length;i++)
+        {
+            myAns[k] = new int[smallAns[i].length];
+            for(int j=0;j<smallAns[i].length;j++)
+            {
+                myAns[k][j]=smallAns[i][j];
+            }
+            k+=1;
+        }
+        
+        for(int i=0;i<smallAns.length;i++)
+        {
+            myAns[k] = new int[smallAns[i].length+1];
+            myAns[k][0]=cn;
+            for(int j=1;j<=smallAns[i].length;j++)
+            {
+                myAns[k][j] = smallAns[i][j-1];
+            }
+            k++;
+        }
+        
+        return myAns;
+    }
+}
+
+// if (start == input.length) {
+//             int[][] myans = new int[1][0];
+//             return myans;
+//         }
+//         int cn = input[start];
+//         int[][] smallanswer = subsets(input, start + 1);
+//         int[][] myans = new int[2 * smallanswer.length][];
+//         int k = 0;
+        
+//         for (int i = 0; i < smallanswer.length; i++) {
+//             myans[k] = new int[smallanswer[i].length];
+//             for (int j = 0; j < smallanswer[i].length; j++) {
+//                 myans[k][j] = smallanswer[i][j];
+
+//             }
+//             k++;
+//         }
+//         for (int i = 0; i < smallanswer.length; i++) {
+//             myans[k] = new int[smallanswer[i].length + 1];
+//             myans[k][0]=cn;
+//             for (int j = 1; j <= smallanswer[i].length; j++) {
+//                 myans[k][j] = smallanswer[i][j - 1];
+//             }
+//             k++;
+//         }
+        
+//         return myans;
