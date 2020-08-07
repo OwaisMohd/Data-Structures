@@ -1,0 +1,51 @@
+/*
+ class LinkedListNode<T> {
+	public T data;
+	public LinkedListNode<T> next;
+	public LinkedListNode(T data) {
+		this.setData(data);
+		this.next = null;
+	}
+	public T getData() {
+		return data;
+	}
+	public void setData(T data) {
+		this.data = data;
+	}
+} */
+public class Solution {
+	public static void deleteAlternateNodes(LinkedListNode<Integer> head) {
+        
+        LinkedListNode<Integer> prev = head;
+        LinkedListNode<Integer> now = head.next;
+        if(head == null)
+        {
+            return ;
+        }
+        while(prev != null && now != null)
+        {
+            prev.next=now.next;
+            now =null;
+            prev = prev.next;
+            if(prev != null)
+            {
+                now = prev.next;
+            }
+        }
+        
+        
+        // if(head == null)
+        // {
+        //     return;
+        // }
+        // if(head.next == null)
+        // {
+        //     return;
+        // }
+        // LinkedListNode<Integer> temp = head;
+        // while(temp.next != null && temp.next.next != null)
+        // {
+        //     temp.next = temp.next.next;
+        // }
+	}
+}
