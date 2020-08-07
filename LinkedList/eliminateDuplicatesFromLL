@@ -1,0 +1,85 @@
+/*
+class LinkedListNode<T> {
+	public T data;
+	public LinkedListNode<T> next;
+
+	public LinkedListNode(T data) {
+		this.setData(data);
+		this.next = null;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+}
+* */
+
+public class Solution {
+	public static LinkedListNode<Integer> removeDuplicates(LinkedListNode<Integer> head) {
+        
+        // MY WAY OF DOING IT
+        
+// 		if(head == null || head.next == null)
+//         {
+//             return head;
+//         }
+//         LinkedListNode<Integer> temp=head;
+//         while(temp.next !=null)
+//         {
+//             if(temp.data.equals(temp.next.data))
+//             {
+//                 temp.next=temp.next.next;
+//             }
+//             else
+//             {
+//                 temp=temp.next;
+//             }
+//         }
+        
+//         return head;
+
+        
+        //HINT'S APPROACH 
+        
+        if(head == null || head.next == null)
+        {
+            return head;
+        }
+        LinkedListNode<Integer> ptr1=head;
+        LinkedListNode<Integer> ptr2=head.next;
+        while(ptr2 != null)
+        {
+            if(ptr1.data.equals(ptr2.data))
+            {
+                ptr2=ptr2.next;
+            }
+            else
+            {
+                ptr1.next=ptr2;
+                ptr1=ptr2;
+                ptr2=ptr2.next;
+            }
+        }
+        ptr1.next=ptr2;
+        return head;
+        
+        // SECOND APPROACH
+        
+      //   LinkedListNode<Integer> temp=head;
+      //   while(temp.next!=null){
+      //   if(temp.data.equals((temp.next).data)){ //  
+      //     //temp.next
+      //     	temp.next=temp.next.next;          
+      //   }else{
+      // 		temp=temp.next;
+      //   }
+      // }
+      //   return head; 
+        
+    }
+}
