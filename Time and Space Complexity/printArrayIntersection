@@ -1,0 +1,85 @@
+import java.util.Arrays;
+public class Intersection{
+	
+	public static void intersection(int[] arr1, int[] arr2){
+		/* Your class should be named Intersection
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Print output and don't return it.
+	 	 * Taking input is handled automatically.
+  		 */
+		Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        
+        int i=0;int j=0;
+        
+        while(i<arr1.length && j<arr2.length)
+        {
+            if(arr1[i] == arr2[j])
+            {
+                System.out.println(arr1[i]);
+                i++;j++;
+            }
+            else if(arr1[i] > arr2[j])
+            {
+                j++;
+            }
+            else if(arr1[i] < arr2[j])
+            {
+                i++;
+            }
+        }
+	}
+}
+    
+//     private static void MergeSort(int a[],int s, int l)
+//     {
+//         if(s<=l)
+//         {
+//             int mid=(s+l)/2;
+//             MergeSort(a,s,mid);
+//             MergeSort(a,mid+1,l);
+//             Merge(a,s,mid,l);
+//         }
+//     }
+    
+//     private static void Merge(int a[],int s,int m,int len)
+//     {
+//         int n1=m-s;
+//         int n2=len-m+1;
+//         int l[]=new int[n1];
+//         int r[]=new int[n2];
+        
+//         for(int i=0;i<n1;i++)
+//         {
+//             l[i]=a[s+i];
+//         }
+//         for(int i=0;i<n2;i++)
+//         {
+//             r[i]=a[i+m+1];
+//         }
+//         int i=0;int j=0;int k=s;
+//         while(i<n1 && j<n2)
+//         {
+//             if(l[i] <= r[j])
+//             {
+//                 a[k]=l[i];
+//                 i++;k++;
+//             }
+//             else
+//             {
+//                 a[k]=r[j];
+//                 k++;j++;
+//             }
+//         }
+//         while(i<n1)
+//         {
+//             a[k]=l[i];
+//             i++;k++;
+//         }
+//         while(j<n2)
+//         {
+//             a[k]=r[j];
+//             k++;j++;
+//         }
+//     }
