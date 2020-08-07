@@ -1,0 +1,49 @@
+/*************** 
+ * Following is the Node class already written 
+class LinkedListNode<T> {
+	T data;
+	LinkedListNode<T> next;
+
+	public LinkedListNode(T data) {
+		this.data = data;
+	}
+}
+ ***************/
+
+public class Solution {
+
+
+	public static LinkedListNode<Integer> nextLargeNumber(LinkedListNode<Integer> head) {
+   		
+        LinkedListNode<Integer> last = null;
+        LinkedListNode<Integer> cur = head;
+        while (cur.next != null) 
+        { 
+            if (cur.data != 9) 
+            { 
+                last = cur; 
+            } 
+            cur = cur.next; 
+        } 
+        if (cur.data != 9) 
+        { 
+            cur.data++; 
+            return head; 
+        }
+        if (last == null) 
+        { 
+            last = new LinkedListNode(0);
+            last.next = head; 
+            head = last; 
+        } 
+        last.data++; 
+        last = last.next; 
+
+        while (last != null)  
+        { 
+            last.data = 0; 
+            last = last.next; 
+        } 
+        return head; 
+    }
+}
