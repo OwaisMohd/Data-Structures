@@ -1,0 +1,45 @@
+public class solution {
+
+	// Return a 2D array that contains all the subsets which sum to k
+	public static int[][] subsetsSumK(int input[], int k) {
+		// Write your code here
+		return subsetsSumK(input,0,k);
+	}
+    
+    private static int[][] subsetsSumK(int input[],int start,int p)
+    {
+        if(start == input.length)
+        {
+            if (p == 0) {
+                return new int[1][0];
+            }
+            else {
+                return new int[0][0];
+            }
+        }
+        int cn=input[start];
+        int smallAns1[][]=subsetsSumK(input,start+1,p);
+        int smallAns2[][]=subsetsSumK(input,start+1,p-cn);
+        
+        int myAns[][] = new int[smallAns1.length+smallAns2.length][];
+        int k=0;
+        
+        for(int i=0;i<smallAns1.length;i++){
+            myAns[k]=smallAns1[i];
+            k++;
+        }
+        
+        for(int i=0;i<smallAns2.length;i++){
+            
+            myAns[k]=new int[smallAns2[i].length+1];
+            myAns[k][0]=cn;
+            for(int j=0;j<smallAns2[i].length;j++){
+                myAns[k][j+1]=smallAns2[i][j];
+            }
+            
+            k++;
+        }
+        
+        return myAns;
+    }
+}   
