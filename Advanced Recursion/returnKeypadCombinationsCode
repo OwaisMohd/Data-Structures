@@ -1,0 +1,48 @@
+public class solution {
+
+	public static void printKeypad(int input){
+		// Write your code here
+		printKeypad(input,"");
+	}
+    
+    private static void printKeypad(int input,String outputSoFar)
+    {
+        if(input == 0)
+        {
+            System.out.println(outputSoFar);
+            return ;
+        }
+        String s=setOfCharacter(input%10);
+        printKeypad(input/10,s.charAt(0) + outputSoFar);
+        printKeypad(input/10,s.charAt(1) + outputSoFar);
+        printKeypad(input/10,s.charAt(2) + outputSoFar);
+        if(s.length()==4)
+        {
+            printKeypad(input/10,s.charAt(3) + outputSoFar);
+        }
+    }
+    
+    
+    public static String setOfCharacter(int n){
+     switch(n){
+        case 2:	return "abc";
+         		
+        case 3:	return "def";
+         		
+        case 4:	return "ghi";
+         	
+        case 5:	return "jkl";
+         	
+        case 6:	return "mno";
+         	
+        case 7:	return "pqrs";
+         	
+        case 8:	return "tuv";
+			
+        case 9:	return "wxyz";
+        
+       default:break;
+     }
+     return ""; 
+    }
+}
