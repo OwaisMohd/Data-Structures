@@ -1,0 +1,93 @@
+public class Solution {
+
+
+
+	public static LinkedListNode<Integer> bubbleSort(LinkedListNode<Integer> head )
+	{
+		//Write your code here
+        if(head == null || head.next == null)
+        {
+            return head;
+        }
+        int no=len(head);
+        for(int i=0;i<no;i++)
+        {
+            LinkedListNode<Integer> curr=head;
+        	LinkedListNode<Integer> prev=null;
+        	LinkedListNode<Integer> n;
+            while(curr.next != null)
+        	{
+                if(curr.data <= curr.next.data)
+                {
+                    prev = curr;
+                	curr = curr.next;
+                }
+            	else
+            	{
+                    if(prev == null)
+                	{
+                        n=curr.next;
+                        curr.next = n.next;
+                        n.next = curr;
+                        head = n;
+                        prev = n;
+               	 	}
+                	else 
+                	{
+                    	prev.next = curr.next;
+                        n=curr.next;
+                    	curr.next = n.next;
+                    	n.next = curr;
+                        
+                        prev=n;
+                	}
+            	}
+        	}
+        }
+        
+        return head;
+        
+        
+        
+        // TUTORIALS POINT SOLUTION changing data not nodes position
+        
+//         LinkedListNode<Integer> current = head, index = null;  
+//         int temp;  
+          
+//         if(head == null) {  
+//             return head;  
+//         }  
+//         else {  
+//             while(current != null) {  
+//                 //Node index will point to node next to current  
+//                 index = current.next;  
+                  
+//                 while(index != null) {  
+//                     //If current node's data is greater than index's node data, swap the data between them  
+//                     if(current.data > index.data) {  
+//                         temp = current.data;  
+//                         current.data = index.data;  
+//                         index.data = temp;  
+//                     }  
+//                     index = index.next;  
+//                 }  
+//                 current = current.next;  
+//             }      
+//         }  
+        
+//         return head;
+             
+        
+	}
+    private static int len(LinkedListNode<Integer> head)
+    {
+        int c=0;
+        while(head != null)
+        {
+            c++;
+            head=head.next;
+        }
+        return c;
+    }
+}
+
