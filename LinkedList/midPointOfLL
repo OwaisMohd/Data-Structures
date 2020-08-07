@@ -1,0 +1,59 @@
+/*
+class LinkedListNode<T> {
+	public T data;
+	public LinkedListNode<T> next;
+
+	public LinkedListNode(T data) {
+		this.setData(data);
+		this.next = null;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
+}
+* */
+public class Solution {
+	public static int printMiddel(LinkedListNode<Integer> head) {
+        // if(head == null)
+        // {
+        //     return 0;
+        // }
+        // if(head.next == null)
+        // {
+        //     return head.data;
+        // }
+        // LinkedListNode<Integer> s=head;
+        // LinkedListNode<Integer> f=head;
+        // LinkedListNode<Integer> temp=null;
+        // while(f != null)
+        // {
+        //     temp=s;
+        //     s=s.next;
+        //     f=f.next.next;
+        // }
+        // return temp.data;
+        
+        
+        
+        if(head == null)
+        {
+            return 0;
+        }
+        LinkedListNode<Integer> s=head;
+        LinkedListNode<Integer> f=head;  
+		while(f.next != null && f.next.next != null)
+        {
+            s=s.next;
+            f=f.next.next;
+        }	
+        return s.data;
+        
+        
+    }
+}
