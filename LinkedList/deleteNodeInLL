@@ -1,0 +1,61 @@
+/*************** 
+ * Following is the Node class already written 
+class LinkedListNode<T> {
+	T data;
+	LinkedListNode<T> next;
+
+	public Node(T data) {
+		this.data = data;
+	}
+}
+ ***************/
+
+public class Solution {
+
+	public static LinkedListNode<Integer> deleteIthNode(LinkedListNode<Integer> head, int i){
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+		*/
+        LinkedListNode<Integer> temp=head;
+        int actlen=0;
+        while(temp != null)
+        {
+            temp=temp.next;
+            actlen++;
+        }
+        if(actlen <= i)
+        {
+            return head;
+        }
+        temp=head;
+		if(i == 0)
+        {
+            head=head.next;
+            return head;
+        }
+        else{
+            int pos=0;
+            while(pos < i-1)
+            {
+                temp=temp.next;pos++;
+                if(temp == null)
+                {
+                    return head;
+                }
+            }
+            
+            if(temp.next.next != null)
+            {
+                temp.next=temp.next.next;
+            }
+            else
+            {
+                temp.next=null;
+            }
+        }
+        return head;
+	}
+}
