@@ -1,0 +1,55 @@
+public class Solution {
+
+	public static LinkedListNode<Integer> mergeSort(LinkedListNode<Integer> head) {
+		// write your code here
+        if(head == null || head.next == null)
+        {
+            return head;
+        }
+        
+        LinkedListNode<Integer> mid = middle(head);
+        LinkedListNode<Integer> nextofmiddle=mid.next;
+        mid.next = null; //breaking into two linked lists
+        LinkedListNode<Integer> left = mergeSort(head);
+        LinkedListNode<Integer> right = mergeSort(nextofmiddle);
+        
+        LinkedListNode<Integer> sorted = merge(left, right);
+        return sorted;
+	}
+    
+    private static LinkedListNode<Integer> middle(LinkedListNode<Integer> head)
+    {
+        if (head == null) 
+            return head; 
+  
+        LinkedListNode<Integer> slow = head, fast = head; 
+  
+        while (fast.next != null && fast.next.next != null) { 
+            slow = slow.next; 
+            fast = fast.next.next; 
+        } 
+        return slow; 
+    }
+    
+    private static LinkedListNode<Integer> merge(LinkedListNode<Integer> left,LinkedListNode<Integer> right)
+    {
+        LinkedListNode<Integer> res = null;
+        if(left == null)
+            return right;
+        if(right == null)
+            return left;
+        
+        if(left.data <= right.data)
+        {
+            res = left;
+            res.next = merge(left.next, right);
+        }
+        else
+        {
+         	res = right;
+            res.next = merge(left,right.next);
+        }
+        return res;
+    }
+
+}
