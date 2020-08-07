@@ -1,0 +1,29 @@
+public class solution {
+	
+	public static String[] permutationOfString(String input){
+		// Write your code here
+		if(input.length() == 0)
+        {
+            String output[]={""};
+            return output;
+        }
+        
+        char cc=input.charAt(0);
+        String smallAns[]=permutationOfString(input.substring(1));
+        
+        String myans[]=new String[input.length()*smallAns.length];
+        int k=0;
+        
+        for (int j = 0; j < smallAns.length; j++) {
+            String currstring = smallAns[j];
+            for (int i = 0; i <=currstring.length(); i++) {
+                myans[k] = currstring.substring(0,i)+cc+currstring.substring(i);
+                k++;
+            }
+        }
+        
+        return myans;
+        
+	}
+	
+}
