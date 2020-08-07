@@ -1,0 +1,23 @@
+public class solution {
+
+	// Return the changed string
+	public static String replace(String input){
+		// Write your code here
+		return replace(input, 0);
+	}
+    private static String replace(String input, int startIndex)
+    {
+        if(startIndex > input.length()-2)
+        {
+            return input;
+        }
+        if(input.charAt(startIndex) =='p' && input.charAt(startIndex+1) == 'i')
+        {
+            String input1 = input.substring(0,startIndex) + "3.14" + input.substring(startIndex+2);
+            input=input1;
+            startIndex+=4;
+            return replace(input,startIndex);
+        }
+        return replace(input,startIndex+1);
+    }
+}
