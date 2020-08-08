@@ -1,0 +1,82 @@
+public class Solution {
+
+/*	Binary Tree Node class
+ * 
+ * class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+		
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+	}
+	*/
+
+	public static int lcaInBST(BinaryTreeNode<Integer> root , int a , int b){
+		// Write your code here
+        
+        //  DONE WITH THE APPROACH OF BINARY TREE AND IT WORKS FINE WITH NO ERRORS
+// 		if(root == null){
+//             return -1;
+//         }
+        
+//         if(root.data == a || root.data == b){
+//             return root.data;
+//         }
+
+//     	int a1 = lcaInBST(root.left,a,b);
+//         int b1 = lcaInBST(root.right,a,b);
+        
+//         if(a1 == -1 && b1 != -1){
+//             return b1;
+//         }
+//         else if(a1 != -1 && b1 == -1){
+//             return a1;
+//         }
+//         else if(a1 == -1 && b1 == -1){
+//             return -1;
+//         }
+//         else{
+//             return root.data;
+//         }
+        
+        // CORRECT APPROACH IS THIS FOR A BST 
+        
+        BinaryTreeNode<Integer> node = helper(root,a,b);
+        if(node != null){
+            return node.data;
+        }
+        else {
+            return -1;
+        }
+	}
+    public static BinaryTreeNode<Integer> helper(BinaryTreeNode<Integer> root , int a , int b){
+        if(root == null){
+            return null;
+        }
+        if(root.data == a || root.data == b){
+            return root;
+        }
+        if(root.data < a && root.data < b){
+            return helper(root.right,a,b);
+        }
+        else if(root.data > a && root.data > b){
+            return helper(root.left,a,b);
+        }
+        else{
+            BinaryTreeNode<Integer> leftlca = helper(root.left,a,b);
+            BinaryTreeNode<Integer> rightlca = helper(root.right,a,b);
+            if(leftlca != null && rightlca != null){
+                return root;
+            }
+            else if(leftlca != null){
+                return leftlca;
+            }
+            else {
+                return rightlca;
+            }
+        }
+    }
+    
+}
