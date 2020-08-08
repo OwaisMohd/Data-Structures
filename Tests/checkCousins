@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+
+
+public class solution {
+
+	/*	Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+	}
+	 */
+
+	public static boolean isCousin(BinaryTreeNode<Integer> root, int p, int q) {
+		// Write your code here
+		return ((level(root, p, 1) == level(root, q, 1)) && 
+                (!isSibling(root, p, q))); 
+	}
+    public static int level(BinaryTreeNode<Integer> root, int ptr, int lev) 
+    { 
+        // base cases 
+        if (root == null) 
+            return 0; 
+  
+        if (root.data == ptr) 
+            return lev; 
+  
+        // Return level if Node is present in left subtree 
+        int l = level(root.left, ptr, lev + 1); 
+        if (l != 0) 
+            return l; 
+  
+        // Else search in right subtree 
+        return level(root.right, ptr, lev + 1); 
+    }
+    public static boolean isSibling(BinaryTreeNode<Integer> root, int a, int b) 
+    { 
+        // Base case 
+        if (root == null) 
+            return false; 
+        boolean x=false;
+        boolean y = false;
+  		if(root.left != null && root.right != null)
+        {
+            x = (root.left.data == a && root.right.data == b);
+            y = (root.left.data == b && root.right.data == a);
+        }
+        return ( x || 
+                 y || 
+                isSibling(root.left, a, b) || 
+                isSibling(root.right, a, b)); 
+        
+    } 
+
+}
