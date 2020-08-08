@@ -1,0 +1,17 @@
+import java.util.*;
+public class solution {
+
+	public static String uniqueChar(String str){
+		// Write your code here
+        HashMap<Character, Integer> map = new HashMap<>();
+        String s="";
+		for(char x : str.toCharArray()){
+            if(map.containsKey(x)){
+                continue;
+            }
+            map.put(x,1);
+            s=s+x;
+        }
+        return s;
+	}
+}
