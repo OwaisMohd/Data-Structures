@@ -1,0 +1,52 @@
+import java.util.*;
+public class Solution {
+
+/*	Binary Tree Node class
+ * 
+ * class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+		
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+	}
+	*/
+	public static void printLevelWise(BinaryTreeNode<Integer> root) {
+		/* Your class should be named Solution
+		* Don't write main().
+		* Don't read input, it is passed as function argument.
+		* Print output and don't return it.
+		* Taking input is handled automatically.
+		*/
+		if(root == null){
+            return;
+        }
+        Queue<BinaryTreeNode<Integer>> q=new LinkedList<BinaryTreeNode<Integer>>();
+        q.add(root);
+        while(!q.isEmpty()){
+            BinaryTreeNode<Integer> front = q.poll();
+            String tobePrinted = front.data+":";
+			
+            if(front.left != null){
+                tobePrinted+="L:"+front.left.data+",";
+                q.add(front.left);
+            }
+            else{
+                tobePrinted+="L:-1,";
+            }
+
+            if(front.right != null){
+                tobePrinted+="R:"+front.right.data;
+                q.add(front.right);
+            }
+            else{
+                tobePrinted+="R:-1";
+            }
+            
+            System.out.println(tobePrinted);
+        }
+	}
+	
+}
