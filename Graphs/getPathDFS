@@ -1,0 +1,53 @@
+import java.util.Scanner;
+import java.util.*;
+public class Solution {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int V = s.nextInt();
+		int E = s.nextInt();
+
+		/* Write Your Code Here
+		 * Complete the Rest of the Program
+		 * You have to take input and print the output yourself
+		 */
+        
+        int edges[][] = new int[V][V];
+        for(int i =0; i< E; i++){
+            int fv = s.nextInt();
+            int sv = s.nextInt();
+            edges[fv][sv] = 1;   
+            edges[sv][fv] =1;
+        }
+//         int v1 = s.nextInt();
+//         int v2 = s.nextInt();
+//         boolean visited [] =new boolean[V];
+        
+//         ArrayList<Integer> ans = getPath(edges,v1,v2,visited);
+//         for(int i:ans){
+//             System.out.print(i+" ");
+//         }
+        int start=s.nextInt();
+        int end=s.nextInt();
+        String ans="";
+        boolean visited[]=new boolean[edges.length];
+        help(edges,visited,ans,start,end);
+	}
+    
+    
+    public static void help(int edges[][],boolean visited[],String ans,int start,int end){
+    if(start==end){
+        ans=start+" "+ans;
+            System.out.print(ans);
+            System.exit(0);
+    }  
+        visited[start]=true;
+        ans=start+" "+ans;
+        int n=edges.length;   
+          for(int j=0;j<n;j++){
+              if(edges[start][j]==1&&!visited[j]){
+                 help(edges,visited,ans,j,end); 
+              }
+          }
+    }
+}
