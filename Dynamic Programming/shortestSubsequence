@@ -1,0 +1,41 @@
+import java.util.*;
+public class solution {
+	
+	public int solve(String S,String V){
+		
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input. Input is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+		 */
+        
+        
+        
+        if(S.length() == 0){
+            return 1000000000;
+        }
+        
+        if(V.length() <= 0){
+            return 1;
+        }
+        
+        int i=0;
+        for(i=0;i<V.length();i++){
+            if(V.charAt(i) == S.charAt(0)){
+                break;
+            }
+        }
+
+        if(i == V.length()){
+            return 1;
+        }
+
+        int op1 = solve(S.substring(1),V);  
+        int op2 = 1 + solve(S.substring(1),V.substring(i+1));
+
+        return Math.min(op1,op2);
+        
+        
+	}	
+}
