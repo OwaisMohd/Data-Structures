@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int V = s.nextInt();
+		int E = s.nextInt();
+
+		/* Write Your Code Here
+		 * Complete the Rest of the Program
+		 * You have to take input and print the output yourself
+		 */
+        int adjacencymatrix[][]=new int[V][V];
+        for(int i=0;i<E;i++){
+            int v1 = s.nextInt();
+            int v2 = s.nextInt();
+        	int weight = s.nextInt();
+            adjacencymatrix[v1][v2] = weight;
+            adjacencymatrix[v2][v1] = weight;
+        }
+        dijkstras(adjacencymatrix);
+    }
+    
+    private static void dijkstras(int[][] adjacencymatrix)
+    {
+        int v = adjacencymatrix.length;
+        boolean visited[] = new boolean[v];
+        int distance[] = new int[v];
+        distance[0] = 0;
+        for(int i=1;i<v;i++){
+            distance[i] = Integer.MAX_VALUE;
+        }
+        
+        for(int i=0;i<v-1;i++){
+            int minvertex = findminvertex(distance,visited);
+            visited[minvertex] = true;
+            for(int j=0;j<v;j++){
+                if(adjacencymatrix[minvertex][j] != 0 && !visited[j] && distance[minvertex] != Integer.MAX_VALUE){
+                    int newdist = distance[minvertex] + adjacencymatrix[minvertex][j];
+                    if(newdist < distance[j]){
+                        distance[j] = newdist;
+                    }
+                }
+            }
+        }
+        
+        //printing
+        for(int i=0;i<v;i++){
+            System.out.println(i+" "+distance[i]);
+        }
+    }
+    
+    private static int findminvertex(int distance[],boolean visited[]){
+        int minvertex =-1;
+        for(int i =0;i<distance.length;i++){
+            if(!visited[i] && (minvertex == -1 || distance[i] < distance[minvertex])){
+                minvertex = i;
+            }
+        }
+        return minvertex;
+    } 
+}
+
