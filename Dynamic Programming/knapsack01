@@ -1,0 +1,27 @@
+public class Solution {
+	
+	public static int knapsack(int[] weight,int value[],int maxWeight, int n){
+		/* Your class should be named Solution.
+		* Don't write main() function.
+		* Don't read input, it is passed as function argument.
+		* Return output and don't print it.
+		* Taking input and printing output is handled automatically.
+		*/
+        
+        return helper(weight,value,maxWeight,n,0);
+	}
+    private static int helper(int[] weight,int value[],int maxWeight, int n,int i){
+        if(maxWeight == 0 || i>=n){
+            return 0;
+        }
+        if(weight[i] > maxWeight){
+            return helper(weight,value,maxWeight,n,i+1);
+        }
+        else
+        {
+            int op1 = helper(weight,value,maxWeight,n,i+1);
+            int op2 = value[i] + helper(weight,value,maxWeight-weight[i],n,i+1);
+            return Math.max(op1,op2);
+        }
+    }
+}
