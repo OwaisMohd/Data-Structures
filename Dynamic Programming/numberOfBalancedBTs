@@ -1,0 +1,28 @@
+public class Solution {
+
+	public static int balancedTreesOfHeightH(int height){
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+		*/
+
+        // VERY IMPORTANT QUESTION
+        
+        int mod = (int)Math.pow(10,9)+7;
+        return count(height,mod);
+    }
+    public static int count(int h, int mod){
+        if(h == 0 || h ==1){
+            return 1;
+        }
+        int x = count(h-1,mod);
+        int y = count(h-2,mod);
+        long res1 = (long)x*x;
+        long res2 = (long)x*y*2;
+        int value1 = (int)(res1 % mod);
+        int value2 = (int)(res2 % mod);
+        return (value1+value2)%mod;        
+    }
+}
